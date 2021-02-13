@@ -1,0 +1,58 @@
+﻿@page "/newdata"
+@using System.ComponentModel.DataAnnotations;
+@using System.Net.Http.Headers;
+@using System.Text;
+
+<h1>Add Weather Types</h1>
+
+<input @bind="WeatherValue" />
+<br/><br/>
+<button class="btn btn-primary" @onclick="() => AddWeatherType(WeatherValue)"> Insert</button>
+
+@code {
+    private string WeatherValue { get; set; }
+
+    public async Task AddWeatherType(string weatherType)
+    {
+        try
+        {
+            if (!String.IsNullOrEmpty(weatherType))
+            {
+                Console.WriteLine($"AddWeatherType function called with value: {weatherType}");
+
+                var client = new HttpClient();
+
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                var jsonObject = "{\"WeatherType\":\"" + weatherType + "\"}";
+                Console.WriteLine($"Posting JSON object to WeatherType endpoint: '{jsonObject}'");
+                var response = await client.PostAsync("http://localhost:8080/api/v1/weathertype", new StringContent(jsonObject, Encoding.UTF8, "application/json"));
+
+                string resultContent = await response.Content.ReadAsStringAsync();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    WeatherValue = null;
+                }
+                else
+                {
+                    Console.WriteLine($"Error adding weathertype: {resultContent}");
+                }
+            }
+            else
+            {
+                throw new Exception("WeatherType is null or empty. Can't insert data.");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"{ex}");
+        }
+    }
+    public class WeatherTypeObj
+    {
+        [Required(ErrorMessage = "Must be filled out")]
+        public string WeatherType { get; set; }
+    }
+}
