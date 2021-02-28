@@ -53,7 +53,7 @@ namespace AppDynTestBackend.Controllers
                 }
                 if (body.WeatherType == null)
                 {
-                    Logging.log.Error($"/api/v1/config: WeatherType missing from body");
+                    Logging.log.Error($"/api/v1/weathertype: WeatherType missing from body");
 
                     return StatusCode(400, new Status { Result = false, Message = "WeatherType missing from body" });
                 }

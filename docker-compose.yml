@@ -24,3 +24,18 @@ services:
     ports:
       - 8080:80
       - 4443:443
+    environment: 
+      CORECLR_PROFILER: "{57e1aa68-2229-41aa-9931-a6e93bbc64d8}"
+      CORECLR_ENABLE_PROFILING: "1"
+      CORECLR_PROFILER_PATH: "/opt/temp/libappdprofiler.so"
+      LD_LIBRARY_PATH: "/opt/temp"
+      APPDYNAMICS_AGENT_APPLICATION_NAME: "AppdynTestBackend_name"
+      APPDYNAMICS_AGENT_TIER_NAME: "AppdynTestBackend_tier"
+      APPDYNAMICS_AGENT_NODE_NAME: "AppdynTestBackend_node"
+      APPDYNAMICS_AGENT_ACCOUNT_NAME: "myorganization-test"
+      APPDYNAMICS_AGENT_ACCOUNT_ACCESS_KEY: "password"
+      APPDYNAMICS_CONTROLLER_HOST_NAME: "myorganization-test.saas.appdynamics.com"
+      APPDYNAMICS_CONTROLLER_PORT: "443"
+      APPDYNAMICS_CONTROLLER_SSL_ENABLED: "true"
+      APPDYNAMICS_AGENT_REUSE_NODE_NAME: "true"
+      APPDYNAMICS_AGENT_REUSE_NODE_NAME_PREFIX: "AppdynTestBackend_"

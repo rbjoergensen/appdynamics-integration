@@ -1,0 +1,27 @@
+{
+  "controller": {
+    "host": "myorganization.saas.appdynamics.com",
+    "port": 443,
+    "ssl": true,
+    "account": "myorganization-test",
+    "password": "password"
+  },
+  "application": {
+    "name": "AppdynTestBackend_name",
+    "tier": "AppdynTestBackend_tier",
+    "node": "AppdynTestBackend_node"
+  },
+  "analytics": {
+    "host": "myorganization.saas.appdynamics.com",
+    "port": 9090
+  },
+  "feature": [
+    "FULL_AGENT"
+  ],
+  "log": [
+    {
+      "outputtype": "console",
+      "level": "DEBUG"
+    }
+  ]
+}

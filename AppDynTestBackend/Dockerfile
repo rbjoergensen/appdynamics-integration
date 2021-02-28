@@ -16,8 +16,12 @@ RUN dotnet build "AppDynTestBackend.csproj" -c Release -o /app/build
 FROM build AS publish
 RUN dotnet publish "AppDynTestBackend.csproj" -c Release -o /app/publish
 
+FROM docker.io/appdynamics/dotnet-core-agent:20.11.0-linux AS appdynamics
+
 FROM base AS final
 RUN apt update -yqqq; apt install -yqqq iputils-ping curl
 WORKDIR /app
 COPY --from=publish /app/publish .
+COPY --from=appdynamics /opt/appdynamics /opt/temp
+COPY AppDynamicsConfig.json /opt/temp/AppDynamicsConfig.json
 ENTRYPOINT ["dotnet", "AppDynTestBackend.dll"]
