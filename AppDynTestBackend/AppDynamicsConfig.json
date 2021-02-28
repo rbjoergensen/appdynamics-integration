@@ -21,7 +21,7 @@
   "log": [
     {
       "outputtype": "console",
-      "level": "DEBUG"
+      "level": "INFO"
     }
   ]
 }
