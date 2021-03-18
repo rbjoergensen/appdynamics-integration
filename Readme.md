@@ -7,5 +7,15 @@ docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=yourStrong(!)Password' -e 'MSSQL_P
 
 ## Manual POST
 ``` Powershell
-Invoke-Webrequest -Uri "http://localhost:8080/api/v1/weathertype" -Method Post -Body '{"WeatherType":"Moist"}' -ContentType "application/json"
+$Uri = "http://172.22.195.250:8080"
+
+while ($true)
+{
+    Invoke-Webrequest -Uri "$Uri/api/v1/weathertype" -Method Post `
+        -Body ('{"WeatherType":"' + $(-join ((65..90) + (97..122) | `
+            Get-Random -Count 17 | % {[char]$_})) + '"}') -ContentType "application/json" | `
+            select -ExpandProperty Content
+
+    Start-Sleep -Milliseconds ((700..1500)| Get-Random)
+}
 ```
