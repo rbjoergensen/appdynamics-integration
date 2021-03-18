@@ -16,14 +16,12 @@ services:
     container_name: appdyntest-frontend
     ports:
       - 80:80
-      - 443:443
   appdyntest-backend:
     build: ./AppDynTestBackend
     restart: always
     container_name: appdyntest-backend
     ports:
-      - 8080:80
-      - 4443:443
+      - 9080:80
     environment: 
       CORECLR_PROFILER: "{57e1aa68-2229-41aa-9931-a6e93bbc64d8}"
       CORECLR_ENABLE_PROFILING: "1"

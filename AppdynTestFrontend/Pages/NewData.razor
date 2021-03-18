@@ -12,11 +12,11 @@
 @code {
     private string WeatherValue { get; set; }
 
-    public async Task AddWeatherType(string weatherType)
+    private async Task AddWeatherType(string weatherType)
     {
         try
         {
-            if (!String.IsNullOrEmpty(weatherType))
+            if (!string.IsNullOrEmpty(weatherType))
             {
                 Console.WriteLine($"AddWeatherType function called with value: {weatherType}");
 
@@ -27,9 +27,9 @@
 
                 var jsonObject = "{\"WeatherType\":\"" + weatherType + "\"}";
                 Console.WriteLine($"Posting JSON object to WeatherType endpoint: '{jsonObject}'");
-                var response = await client.PostAsync("http://localhost:8080/api/v1/weathertype", new StringContent(jsonObject, Encoding.UTF8, "application/json"));
+                var response = await client.PostAsync("http://localhost:9080/api/v1/weathertype", new StringContent(jsonObject, Encoding.UTF8, "application/json"));
 
-                string resultContent = await response.Content.ReadAsStringAsync();
+                var resultContent = await response.Content.ReadAsStringAsync();
 
                 if (response.IsSuccessStatusCode)
                 {

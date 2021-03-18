@@ -1,28 +1,64 @@
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Serilog;
+using Serilog.Core;
+using Serilog.Events;
 
 namespace AppDynTestBackend
 {
-    public class Program
+    public static class Program
     {
-        public static void Main(string[] args)
+        public static async Task<int> Main(string[] args)
         {
-            Data.Sql.SetupInfrastructure();
+            try
+            {
+                var levelSwitch = new LoggingLevelSwitch
+                {
+                    MinimumLevel = LogEventLevel.Information
+                };
 
-            CreateHostBuilder(args).Build().Run();
+                Log.Logger = new LoggerConfiguration()
+                    .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+                    .Enrich.FromLogContext()
+                    .WriteTo.Console()
+                    .MinimumLevel.ControlledBy(levelSwitch)
+                    .CreateLogger();
+
+                var host = CreateHostBuilder(args).Build();
+
+                var scope = host.Services.CreateScope();
+                var serviceProvider = scope.ServiceProvider;
+                var env = serviceProvider.GetRequiredService<IWebHostEnvironment>();
+
+                if (env.IsDevelopment())
+                {
+                    levelSwitch.MinimumLevel = LogEventLevel.Debug;
+                }
+
+                await host.RunAsync();
+                
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Host terminated unexpectedly: {ex}");
+                
+                return 1;
+            }
+            finally
+            {
+                Log.CloseAndFlush();
+            }
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
+        private static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
                 });
-    }
+        }
 }

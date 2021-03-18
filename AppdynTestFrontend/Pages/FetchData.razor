@@ -6,7 +6,7 @@
 
 <p>This component demonstrates fetching data from the server.</p>
 
-@if (forecasts == null)
+@if (_forecasts == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -22,7 +22,7 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var forecast in forecasts)
+            @foreach (var forecast in _forecasts)
             {
                 <tr>
                     <td>@forecast.Date.ToShortDateString()</td>
@@ -36,18 +36,18 @@ else
 }
 
 @code {
-    private WeatherForecast[] forecasts;
+    private WeatherForecast[] _forecasts;
 
     protected override async Task OnInitializedAsync()
     {
         try
         {
-            var response = await Http.GetAsync("http://localhost:8080/api/v1/weatherforecast");
+            var response = await Http.GetAsync("http://localhost:9080/api/v1/weatherforecast");
 
-            string json = await response.Content.ReadAsStringAsync();
+            var json = await response.Content.ReadAsStringAsync();
             var forecastData = JsonConvert.DeserializeObject<List<WeatherForecast>>(json).ToArray();
 
-            forecasts = forecastData;
+            _forecasts = forecastData;
         }
         catch (Exception ex)
         {
@@ -55,7 +55,7 @@ else
         }
     }
 
-    public class WeatherForecast
+    private class WeatherForecast
     {
         public DateTime Date { get; set; }
 
