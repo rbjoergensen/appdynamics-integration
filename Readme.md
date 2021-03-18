@@ -9,7 +9,7 @@ docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=yourStrong(!)Password' -e 'MSSQL_P
 
 ## Manual POST
 ``` Powershell
-$Uri = "http://172.22.195.250:8080"
+$Uri = "http://localhost:8080"
 
 while ($true)
 {
