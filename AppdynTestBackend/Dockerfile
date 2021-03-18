@@ -1,5 +1,3 @@
-#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
 FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim AS base
 WORKDIR /app
 EXPOSE 80
@@ -7,14 +5,14 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
 WORKDIR /src
-COPY ["AppDynTestBackend.csproj", "AppDynTestBackend/AppDynTestBackend.csproj"]
-RUN dotnet restore "AppDynTestBackend/AppDynTestBackend.csproj"
-WORKDIR "/src/AppDynTestBackend"
+COPY ["AppdynTestBackend.csproj", "AppdynTestBackend/AppdynTestBackend.csproj"]
+RUN dotnet restore "AppdynTestBackend/AppdynTestBackend.csproj"
+WORKDIR "/src/AppdynTestBackend"
 COPY . .
-RUN dotnet build "AppDynTestBackend.csproj" -c Release -o /app/build
+RUN dotnet build "AppdynTestBackend.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "AppDynTestBackend.csproj" -c Release -o /app/publish
+RUN dotnet publish "AppdynTestBackend.csproj" -c Release -o /app/publish
 
 FROM docker.io/appdynamics/dotnet-core-agent:20.11.0-linux AS appdynamics
 
@@ -27,4 +25,4 @@ COPY AppDynamicsConfig.json /opt/temp/AppDynamicsConfig.json
 COPY Data/my-root.crt /usr/local/share/ca-certificates/
 RUN update-ca-certificates
 RUN sed -i 's/DEFAULT@SECLEVEL=2/DEFAULT@SECLEVEL=1/g' /etc/ssl/openssl.cnf
-ENTRYPOINT ["dotnet", "AppDynTestBackend.dll"]
+ENTRYPOINT ["dotnet", "AppdynTestBackend.dll"]

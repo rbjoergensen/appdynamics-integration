@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppdynTestFrontend", "AppdynTestFrontend\AppdynTestFrontend.csproj", "{50D4654D-918E-4E26-B5DD-41155A79EBD2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppDynTestBackend", "AppDynTestBackend\AppDynTestBackend.csproj", "{F7379116-A505-4EDB-AF9D-B5191B0746D0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppdynTestBackend", "AppdynTestBackend\AppdynTestBackend.csproj", "{F7379116-A505-4EDB-AF9D-B5191B0746D0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F34FD419-59AC-4096-AA55-E7274F53E617}"
 	ProjectSection(SolutionItems) = preProject

@@ -4,6 +4,7 @@
     <TargetFramework>net5.0</TargetFramework>
     <UserSecretsId>7144ca80-1418-44d7-9fea-64cc7688a49b</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <RootNamespace>AppDynTestBackend</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
