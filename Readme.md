@@ -7,6 +7,12 @@ Implementation of the Appdynamics agent in .Net Core 3.1 and .Net 5 projects run
 You need an AppDynamics instance running to forward the collected data to.  
 The services will still run without AppDynamics.  
 
+Update the following variables in docker-compose.yml.
+- APPDYNAMICS_CONTROLLER_HOST_NAME
+- APPDYNAMICS_AGENT_ACCOUNT_NAME
+- APPDYNAMICS_AGENT_ACCOUNT_ACCESS_KEY
+- APPDYNAMICS_CONTROLLER_SSL_CERTFILE (Only if you are using a private CA)
+
 In the project root run the docker-compose command with the build parameter.  
 ``` bash
 docker compose up -d --build
