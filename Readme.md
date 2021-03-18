@@ -12,9 +12,11 @@ In the project root run the docker-compose command with the build parameter.
 docker compose up -d --build
 ```
 
-API port: 9080(http)  
-Frontend: 80(http)  
-MSSQL: 1443/tcp(default)  
+| Service  | Port  | Description  |
+|:--------:|:-----:|:------------:|
+| Backend  | 9080  | HTTP         |
+| Frontend | 80    | HTTP         |
+| SQL      | 1443  | MSSQL        |
 
 ## Manual POST
 ``` Powershell
