@@ -2,9 +2,14 @@
 
 Implementation of the Appdynamics agent in .Net Core 3.1 and .Net 5 projects running on the Debian base image.  
 
-## Running an MSSQL server in Docker for testing
+## Running the project
+
+You need an AppDynamics instance running to forward the collected data to.  
+The services will still run without AppDynamics.  
+
+In the project root run the docker-compose command with the build parameter.  
 ``` bash
-docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=yourStrong(!)Password' -e 'MSSQL_PID=Express' -p 1433:1433 -d mcr.microsoft.com/mssql/server:2017-latest-ubuntu 
+docker compose up -d --build
 ```
 
 ## Manual POST
@@ -20,4 +25,9 @@ while ($true)
 
     Start-Sleep -Milliseconds ((700..1500)| Get-Random)
 }
+```
+
+## Running a MSSQL server in Docker for testing
+``` bash
+docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=yourStrong(!)Password' -e 'MSSQL_PID=Express' -p 1433:1433 -d mcr.microsoft.com/mssql/server:2017-latest-ubuntu 
 ```
