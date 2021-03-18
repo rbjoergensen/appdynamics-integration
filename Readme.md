@@ -1,6 +1,6 @@
 # Appdynamics Integration Test Project
 
-Implementation of the Appdynamics agent in .Net Core 3.1 and .Net 5 projects running on the Ubuntu base image.  
+Implementation of the Appdynamics agent in .Net Core 3.1 and .Net 5 projects running on the Debian base image.  
 
 ## Running an MSSQL server in Docker for testing
 ``` bash
