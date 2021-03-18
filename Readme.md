@@ -12,6 +12,10 @@ In the project root run the docker-compose command with the build parameter.
 docker compose up -d --build
 ```
 
+API port: 9080(http)  
+Frontend: 80(http)  
+MSSQL: 1443/tcp(default)  
+
 ## Manual POST
 ``` Powershell
 $Uri = "http://localhost:8080"
