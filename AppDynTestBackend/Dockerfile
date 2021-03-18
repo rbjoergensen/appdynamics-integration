@@ -24,7 +24,7 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 COPY --from=appdynamics /opt/appdynamics /opt/temp
 COPY AppDynamicsConfig.json /opt/temp/AppDynamicsConfig.json
-COPY Data/*.crt /usr/local/share/ca-certificates/
+COPY Data/my-root.crt /usr/local/share/ca-certificates/
 RUN update-ca-certificates
 RUN sed -i 's/DEFAULT@SECLEVEL=2/DEFAULT@SECLEVEL=1/g' /etc/ssl/openssl.cnf
 ENTRYPOINT ["dotnet", "AppDynTestBackend.dll"]
