@@ -1,5 +1,7 @@
 # Appdynamics Integration Test Project
 
+Implementation of the Appdynamics agent in .Net Core 3.1 and .Net 5 projects running on the Ubuntu base image.  
+
 ## Running an MSSQL server in Docker for testing
 ``` bash
 docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=yourStrong(!)Password' -e 'MSSQL_PID=Express' -p 1433:1433 -d mcr.microsoft.com/mssql/server:2017-latest-ubuntu 
