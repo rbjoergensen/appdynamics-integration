@@ -26,7 +26,7 @@ docker compose up -d --build
 
 ## Manual POST
 ``` Powershell
-$Uri = "http://localhost:8080"
+$Uri = "http://localhost:9080"
 
 while ($true)
 {
