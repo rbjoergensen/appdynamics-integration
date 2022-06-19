@@ -1,0 +1,6 @@
+navigatorName: AppDynamics in .Net
+category: Terraform
+includeLink: true
+files:
+- file: Readme.md
+  prettyName: Readme
